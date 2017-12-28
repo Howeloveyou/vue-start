@@ -7,6 +7,7 @@ import Page3 from '../components/Page3.vue'
 Vue.use(Router);
 
 export default new Router({
+  mode: 'history',
   routes: [
     {
       path: '/', component: Page1

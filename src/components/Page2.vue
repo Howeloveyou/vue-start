@@ -1,12 +1,14 @@
 <template>
   <div>
-    这是第二个页面
+    <Reservation />
   </div>
 </template>
 
-<script>
+<script type="es6">
+    import Reservation from './Reservation/Reservation'
     export default {
-        name: "page1"
+        name: "page2",
+      components: {Reservation}
     }
 </script>
 
