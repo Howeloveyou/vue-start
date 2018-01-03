@@ -2,7 +2,7 @@
   <div style="background-color: #EBEBEB;min-height:800px">
     <div style="width:100%;height:60px;background-color: #545c64; overflow: hidden">
             <span class="demonstration" style="float:left;padding-top:10px;color:white;margin-left:1%">
-                图书馆座位管理系统
+                图书馆座位预约系统
             </span>
       <span class="demonstration" style="float:right;padding-top:10px;margin-right:1%">
               <login></login>

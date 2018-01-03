@@ -1,8 +1,8 @@
 <template>
   <div>
     <Header />
-    <TmeReservation v-if="active == 0"/>
-    <RoomChoose v-if="active == 1"/>
+    <TmeReservation v-if="active === 0"/>
+    <RoomChoose v-if="active === 1"/>
   </div>
 </template>
 
