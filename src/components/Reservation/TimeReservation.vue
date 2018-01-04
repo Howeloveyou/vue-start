@@ -10,15 +10,14 @@
         @change = "changeDate"
       >
       </el-date-picker>
-      <el-switch
-        v-model="value3"
-        active-text="下午预约"
-        inactive-text="上午预约"
-        active-value="下午"
-        inactive-value="上午"
-      @change="changeTime">
-      </el-switch>
     </div>
+      <div>
+        <el-radio-group v-model="value2" @change = "changeTime">
+          <el-radio-button label="morning">早上</el-radio-button>
+          <el-radio-button label="afternoon">下午</el-radio-button>
+          <el-radio-button label="night">晚上</el-radio-button>
+        </el-radio-group>
+      </div>
   </div>
 </template>
 
@@ -29,18 +28,20 @@
     data(){
       return {
         value1:  '',
-        value3:  '',
+        value2:  '',
       }
     },
     mounted(){
       this.value1 = this.$store.state.Reservation.params.date;
-      this.value3 = this.$store.state.Reservation.params.isMorning;
+      this.value3 = this.$store.state.Reservation.params.time;
     },
     methods:{
       changeDate(value){
+        console.log(value);
         this.$store.dispatch('changeDate',value)
       },
       changeTime(value){
+        console.log(value);
         this.$store.dispatch('changeTime',value)
       }
     },

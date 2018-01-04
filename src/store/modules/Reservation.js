@@ -1,11 +1,18 @@
 import Vue from 'vue';
+import reservationApi from '@/api/reservation';
 
 import * as types from '../mutation-types';
 const state = {
   active: 0,
   params: {
     date: '',
-    isMorning: '',
+    time: '',
+    room:{
+      floor:"",
+      readingRoom:"",
+      seat:""
+    },
+    roomList:[]
   }
 };
 
@@ -25,16 +32,19 @@ const actions = {
   },
   changeTime({commit},value){
     commit(types.CHNANGE_TIME, value);
+  },
+  getRoomList({commit}){
+    commit(types.GET_ROOMLIST);
   }
 };
 
 const mutations = {
   [types.STEP_NEXT](state){
     if(state.active == 0){
-      if(state.params.date && state.params.isMorning){
+      if(state.params.date && state.params.time){
         state.active++;
       }else{
-        window.alert("请输入完整")
+        window.alert("请选择预约时间！")
       }
     }else{
       state.active++;
@@ -48,8 +58,19 @@ const mutations = {
    state.params.date = value;
   },
   [types.CHNANGE_TIME](state,value){
-    state.params.isMorning = value;
+    state.params.time = value;
   },
+  [types.GET_ROOMLIST](state){
+    reservationApi.getRoomList(
+      response=>{
+        console.log(response.data)
+        Vue.set(state,"roomList",response.data)
+      },
+      error=>{
+
+      }
+    )
+  }
 };
 
 export default {

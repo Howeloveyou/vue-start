@@ -1,13 +1,9 @@
 import axios from 'axios';
 
 export default {
-  toLogin(data,callback, failCallback){
-    axios.get('http://localhost:8060/login/toLogin',{
-        params: {
-          sid: data.sid,
-          psw: data.psw,
-        }
-      })
+  getRoomList(callback, failCallback){
+    axios.get('http://localhost:8060/reservation/getRoomList'
+      )
       .then((response) => {
         console.log('success');
         console.log(response.data);

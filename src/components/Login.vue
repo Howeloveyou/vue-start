@@ -1,7 +1,7 @@
 <template>
   <div>
-  <el-button size="medium" round @click="centerDialogVisible = true"  v-if="login">登录</el-button>
-    <el-dropdown v-if="!login">
+  <el-button size="medium" round @click="centerDialogVisible = true"  v-if="!isLogin">登录</el-button>
+    <el-dropdown v-if="isLogin">
       <span class="el-dropdown-link">
        <span style="color:white">{{sname}}</span><i class="el-icon-arrow-down el-icon--right"></i>
       </span>
@@ -34,6 +34,7 @@
 <script>
     import ElForm from "element-ui/packages/form/src/form";
     import ElFormItem from "element-ui/packages/form/src/form-item";
+    import { mapState } from 'vuex';
 
     export default {
       components: {
@@ -44,8 +45,6 @@
 
           return{
             centerDialogVisible: false,
-            login:true,
-            sname:"王俊豪",
             form:{
               sid:"",
               psw:"",
@@ -54,11 +53,21 @@
       },
       methods:{
         onSubmit(){
-          this.$store.dispatch('login',this.form);
+          var params ={};
+          for(let i in this.form){
+            params[i] = this.form[i];
+          }
+          this.$store.dispatch('login',params);
           console.log('submit!');
           this.login=!this.login;
           this.centerDialogVisible=false;
         }
+      },
+      computed:{
+        ...mapState({
+          sname:state=>state.login.sname,
+          isLogin:state=>state.login.isLogin
+        })
       }
     }
 </script>

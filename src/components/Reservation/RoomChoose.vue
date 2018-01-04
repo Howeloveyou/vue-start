@@ -1,25 +1,57 @@
 <template>
-  <div>
-    <el-card class="box-card">
-     <div class="bs-example margin-bot_20 red-bs-example">
-       <div class="media">
-         <div class="media-left">
-           1F
-         </div>
-         <div class="media-body">
-           <h4 class="media-heading font30">西区C2阅览室</h4>
-           <p>剩余座位数：12个</p>
-           <i class="green"></i>
-         </div>
-       </div>
-     </div>
-    </el-card>
+  <div >
+    <div>
+      <el-card class="box-card" v-for="item in roomList" :key="item.id">
+        <div class="bs-example margin-bot_20 red-bs-example">
+          <div class="media">
+            <div class="media-left">
+             {{item.floor}}F
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading font30">{{item.room}}</h4>
+              <p>剩余座位数：{{item.surplus}}个</p>
+              <div class="bottom clearfix">
+                <time class="time">{{ currentDate | formatDate }}</time>
+                <el-switch
+                  v-model="choose"
+                  active-color="#13ce66"
+                  inactive-color="#ff4949">
+                </el-switch>
+              </div>
+            </div>
+          </div>
+        </div>
+      </el-card>
+    </div>
   </div>
 </template>
 
 <script type="es6">
+  import { mapState } from 'vuex';
+  import {formatDate} from '@/common/dateFormat'
   export default {
     name: "RoomChoose",
+    data(){
+      return{
+        choose:false,
+        currentDate: new Date()
+      }
+    },
+    mounted(){
+      this.$store.dispatch("getRoomList")
+      //roomList=this.$store.Reservation.state.roomList
+    },
+    computed:{
+      ...mapState({
+        roomList:state=>state.Reservation. roomList,
+      })
+    },
+    filters: {
+      formatDate(time) {
+        var date = new Date(time);
+        return formatDate(date, "yyyy-MM-dd hh:mm");
+      }
+    }
   }
 </script>
 <style>
@@ -65,7 +97,8 @@
    right: 5px;
    bottom: 10px;
  }
-i.green {
-
-}
+  .time {
+    font-size: 13px;
+    color: #999;
+  }
 </style>
