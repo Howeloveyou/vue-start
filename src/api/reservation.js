@@ -1,8 +1,13 @@
 import axios from 'axios';
 
 export default {
-  getRoomList(callback, failCallback){
-    axios.get('http://localhost:8060/reservation/getRoomList'
+  getRoomList(data,callback, failCallback){
+    axios.get('http://localhost:8060/reservation/getRoomList',{
+        params: {
+          date: data.date,
+          time: data.time,
+        }
+      }
       )
       .then((response) => {
         console.log('success');

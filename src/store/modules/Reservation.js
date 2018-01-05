@@ -7,12 +7,6 @@ const state = {
   params: {
     date: '',
     time: '',
-    room:{
-      floor:"",
-      readingRoom:"",
-      seat:""
-    },
-    roomList:[]
   }
 };
 
@@ -62,6 +56,7 @@ const mutations = {
   },
   [types.GET_ROOMLIST](state){
     reservationApi.getRoomList(
+      state.params,
       response=>{
         console.log(response.data)
         Vue.set(state,"roomList",response.data)

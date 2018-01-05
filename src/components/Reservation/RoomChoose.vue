@@ -12,11 +12,7 @@
               <p>剩余座位数：{{item.surplus}}个</p>
               <div class="bottom clearfix">
                 <time class="time">{{ currentDate | formatDate }}</time>
-                <el-switch
-                  v-model="choose"
-                  active-color="#13ce66"
-                  inactive-color="#ff4949">
-                </el-switch>
+                <el-radio v-model="whichRoom" :label="item.id" :disabled="item.surplus==0"  border>选择</el-radio>
               </div>
             </div>
           </div>
@@ -33,8 +29,8 @@
     name: "RoomChoose",
     data(){
       return{
-        choose:false,
-        currentDate: new Date()
+        currentDate: new Date(),
+        whichRoom:0
       }
     },
     mounted(){
