@@ -6,6 +6,8 @@ export default {
         params: {
           date: data.date,
           time: data.time,
+          page:data.currentPage,
+          pageSize:data.pageSize
         }
       }
       )

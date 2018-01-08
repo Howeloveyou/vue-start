@@ -55,15 +55,15 @@
         switch(key){
           case '1':
             this.$router.push('/Page1');
-            this.breadcrumbItems  = ['导航一']
             break;
           case '2':
             this.$router.push('/Page2')
-            this.breadcrumbItems  = ['导航二']
             break;
           case '3':
             this.$router.push('/Page3')
-            this.breadcrumbItems  = ['导航三']
+            break;
+          case '4':
+            this.$router.push('/Page4')
             break;
         }
       },

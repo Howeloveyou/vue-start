@@ -7,6 +7,10 @@ const state = {
   params: {
     date: '',
     time: '',
+    pageSize:9,
+    currentPage:1,
+    rid:0,
+    total:0,
   }
 };
 
@@ -27,7 +31,10 @@ const actions = {
   changeTime({commit},value){
     commit(types.CHNANGE_TIME, value);
   },
-  getRoomList({commit}){
+  chooseRoom({commit},value){
+    commit(types.CHOOSE_ROOM,value);
+  },
+  getRoomList({commit},value){
     commit(types.GET_ROOMLIST);
   }
 };
@@ -54,12 +61,17 @@ const mutations = {
   [types.CHNANGE_TIME](state,value){
     state.params.time = value;
   },
+  [types.CHOOSE_ROOM](state,value){
+    console.log(value);
+    state.params.rid = value;
+  },
   [types.GET_ROOMLIST](state){
     reservationApi.getRoomList(
       state.params,
       response=>{
-        console.log(response.data)
-        Vue.set(state,"roomList",response.data)
+        console.log(response.data.list)
+        Vue.set(state,"roomList",response.data.list)
+        Vue.set(state,'total',response.data.total)
       },
       error=>{
 

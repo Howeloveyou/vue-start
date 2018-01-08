@@ -1,23 +1,35 @@
 <template>
   <div >
-    <div>
-      <el-card class="box-card" v-for="item in roomList" :key="item.id">
-        <div class="bs-example margin-bot_20 red-bs-example">
-          <div class="media">
-            <div class="media-left">
-             {{item.floor}}F
-            </div>
-            <div class="media-body">
-              <h4 class="media-heading font30">{{item.room}}</h4>
-              <p>剩余座位数：{{item.surplus}}个</p>
-              <div class="bottom clearfix">
-                <time class="time">{{ currentDate | formatDate }}</time>
-                <el-radio v-model="whichRoom" :label="item.id" :disabled="item.surplus==0"  border>选择</el-radio>
+    <el-row >
+      <el-col :span="8"  v-for="item in roomList" :key="item.id">
+        <el-card class="box-card" >
+          <div class="bs-example margin-bot_20 red-bs-example">
+            <div class="media">
+              <div class="media-left">
+                {{item.floor}}F
+              </div>
+              <div class="media-body">
+                <h4 class="media-heading font30">{{item.room}}</h4>
+                <p>剩余座位数：{{item.surplus}}个</p>
+                <div class="bottom clearfix">
+                  <time class="time">{{ currentDate | formatDate }}</time>
+                  <el-radio v-model="whichRoom" :label="item.id" :disabled="item.surplus==0" @change="chooseRoom"  border>选择</el-radio>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </el-card>
+        </el-card>
+      </el-col>
+    </el-row>
+    <div class="pagination">
+      <el-pagination
+        background
+        layout="total,prev, pager, next"
+        :page-size=pageSize
+        :total=totals
+        :current-page=currentPage
+        @current-change="currentChange">
+      </el-pagination>
     </div>
   </div>
 </template>
@@ -30,16 +42,29 @@
     data(){
       return{
         currentDate: new Date(),
-        whichRoom:0
+        whichRoom:0,
+        currentPage:1,
       }
     },
     mounted(){
       this.$store.dispatch("getRoomList")
       //roomList=this.$store.Reservation.state.roomList
     },
+    methods:{
+      chooseRoom(value){
+        this.$store.dispatch('chooseRoom',value)
+      },
+      currentChange(value){
+        console.log(value)
+        this.$store.state.Reservation.params.currentPage=value;
+        this.$store.dispatch("getRoomList")
+      }
+    },
     computed:{
       ...mapState({
-        roomList:state=>state.Reservation. roomList,
+        roomList:state=>state.Reservation.roomList,
+        pageSize:state=>state.Reservation.params.pageSize,
+        totals:state=>state.Reservation.total,
       })
     },
     filters: {
@@ -96,5 +121,9 @@
   .time {
     font-size: 13px;
     color: #999;
+  }
+  .pagination{
+    margin-top:60px;
+    margin-left:35%;
   }
 </style>

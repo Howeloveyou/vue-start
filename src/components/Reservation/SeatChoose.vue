@@ -1,12 +1,14 @@
 <template>
   <div>
-    这是第三个页面
+    <div>
+      <img src="../../assets/seat.png"/>
+    </div>
   </div>
 </template>
 
 <script>
     export default {
-        name: "page3"
+        name: "SeatChoose"
     }
 </script>
 

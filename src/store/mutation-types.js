@@ -10,6 +10,7 @@ export const STEP_NEXT = 'STEP_NEXT';
 export const STEP_LAST = 'STEP_LAST';
 export const CHNANGE_DATE ='CHNANGE_DATE';
 export const CHNANGE_TIME = 'CHNANGE_TIME';
+export const CHOOSE_ROOM='CHOOSE_ROOM';
 export const GET_ROOMLIST = 'GET_ROOMLIST';
 
 //登录
