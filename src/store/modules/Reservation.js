@@ -7,6 +7,7 @@ const state = {
   params: {
     date: '',
     time: '',
+    whichRoom:0,
     pageSize:9,
     currentPage:1,
     rid:0,
@@ -47,7 +48,13 @@ const mutations = {
       }else{
         window.alert("请选择预约时间！")
       }
-    }else{
+    }else if (state.active == 1){
+     if(state.params.whichRoom === 0){
+       window.alert("请选择阅览室！")
+     }else{
+       state.active++;
+     }
+    } else{
       state.active++;
     }
     if (state.active > 3) state.active = 0;

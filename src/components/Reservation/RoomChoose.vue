@@ -48,10 +48,12 @@
     },
     mounted(){
       this.$store.dispatch("getRoomList")
+      this.whichRoom = this.$store.state.Reservation.params.whichRoom;
       //roomList=this.$store.Reservation.state.roomList
     },
     methods:{
       chooseRoom(value){
+        this.$store.state.Reservation.params.whichRoom=this.whichRoom;
         this.$store.dispatch('chooseRoom',value)
       },
       currentChange(value){

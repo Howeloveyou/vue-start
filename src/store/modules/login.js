@@ -3,6 +3,7 @@ import loginApi from'@/api/login';
 import * as types from '../mutation-types';
 
 const state = {
+  sid:"",
   sname:"",
   isLogin:false,
 };
@@ -33,6 +34,7 @@ const actions = {
 const mutations = {
   [types.LOGIN_SUCCESS](state,payload){
     console.log(payload);
+    Vue.set(state,"sid",payload.sid)
     Vue.set(state,"sname",payload.sname);
     Vue.set(state,"isLogin",true)
   }
