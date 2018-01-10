@@ -5,7 +5,7 @@ export default {
     axios.get('http://localhost:8060/reservation/getRoomList',{
         params: {
           date: data.date,
-          time: data.time,
+          times: data.times,
           page:data.currentPage,
           pageSize:data.pageSize
         }

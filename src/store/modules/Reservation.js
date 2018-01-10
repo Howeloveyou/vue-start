@@ -6,7 +6,8 @@ const state = {
   active: 0,
   params: {
     date: '',
-    time: '',
+    time: [],
+    times:"",
     whichRoom:0,
     pageSize:9,
     currentPage:1,

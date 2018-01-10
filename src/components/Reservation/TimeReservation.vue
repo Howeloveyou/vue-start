@@ -13,11 +13,11 @@
       </el-date-picker>
     </div>
       <div>
-        <el-radio-group v-model="time" @change = "changeTime">
-          <el-radio-button label="morning">早上</el-radio-button>
-          <el-radio-button label="afternoon">下午</el-radio-button>
-          <el-radio-button label="night">晚上</el-radio-button>
-        </el-radio-group>
+        <el-checkbox-group v-model="time" @change = "changeTime">
+          <el-checkbox-button label="morning">早上</el-checkbox-button>
+          <el-checkbox-button label="afternoon">下午</el-checkbox-button>
+          <el-checkbox-button label="night">晚上</el-checkbox-button>
+        </el-checkbox-group>
       </div>
   </div>
 </template>
@@ -29,7 +29,7 @@
     data(){
       return {
         date:  '',
-        time:  '',
+        time: [],
         pickerOptions0: {
           disabledDate(time) {
             let curDate = (new Date()).getTime();
@@ -51,6 +51,8 @@
       },
       changeTime(value){
         console.log(value);
+        this.$store.state.Reservation.params.times=value.join(',');
+        console.log(this.$store.state.Reservation.params.times);
         this.$store.dispatch('changeTime',value)
       }
     },
