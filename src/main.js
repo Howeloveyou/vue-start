@@ -14,21 +14,21 @@ Vue.config.productionTip = false
 Vue.use(ElementUI);
 
 /* 路由验证*/
-// router.beforeEach((to, from, next) => {
-//   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
-//     console.log(store.state.login.isLogin)
-//     if(!store.state.login.isLogin){
-//       console.log("do..");
-//       next({
-//         path:'/page1'
-//       })
-//     }else{
-//       next();
-//     }
-//   }else{
-//     next();
-//   }
-// });
+router.beforeEach((to, from, next) => {
+  if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
+    console.log(store.state.login.isLogin)
+    if(!store.state.login.isLogin){
+      console.log("do..");
+      next({
+        path:'/page1'
+      })
+    }else{
+      next();
+    }
+  }else{
+    next();
+  }
+});
 
 new Vue({
   el: '#app',

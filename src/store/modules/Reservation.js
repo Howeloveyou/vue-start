@@ -5,6 +5,7 @@ import * as types from '../mutation-types';
 const state = {
   active: 0,
   params: {
+    sid:"",
     date: '',
     time: [],
     times:"",
@@ -13,7 +14,18 @@ const state = {
     currentPage:1,
     rid:0,
     total:0,
-  }
+    seid:0,
+    seatNum:0,
+    Ctime:"",
+    place:"",
+  },
+  room:{
+    floor:0,
+    room:"",
+  },
+  message:"",
+  cancelMessage:""
+
 };
 
 const getters = {
@@ -38,6 +50,18 @@ const actions = {
   },
   getRoomList({commit},value){
     commit(types.GET_ROOMLIST);
+  },
+  getSeatList({commit},value){
+    commit(types.GET_SEATLIST);
+  },
+  getRoom({commit}){
+    commit(types.GET_ROOM);
+  },
+  toReservation({commit}){
+    commit(types.TO_RESERVATION);
+  },
+  cancelReservation({commit}){
+    commit(types.CANCEL_RESERVATION)
   }
 };
 
@@ -50,11 +74,12 @@ const mutations = {
         window.alert("请选择预约时间！")
       }
     }else if (state.active == 1){
-     if(state.params.whichRoom === 0){
-       window.alert("请选择阅览室！")
-     }else{
-       state.active++;
-     }
+     // if(state.params.whichRoom === 0){
+     //   window.alert("请选择阅览室！")
+     // }else{
+     //   state.active++;
+     // }
+      state.active ++;
     } else{
       state.active++;
     }
@@ -85,7 +110,55 @@ const mutations = {
 
       }
     )
-  }
+  },
+  [types.GET_SEATLIST](state){
+    reservationApi.getSeatList(
+      state.params,
+      response=>{
+        console.log(response.data)
+        Vue.set(state,"seatList",response.data)
+      },
+      error=>{
+
+      }
+    )
+  },
+  [types.GET_ROOM](state){
+    reservationApi.getRoom(
+      state.params,
+      response=>{
+        console.log(response.data)
+        Vue.set(state,"room",response.data)
+      },
+      error=>{
+
+      }
+    )
+  },
+  [types.TO_RESERVATION](state){
+    reservationApi.toReservation(
+      state.params,
+      response=>{
+        console.log(response)
+        Vue.set(state,"message",response.message);
+      },
+      error=>{
+
+      }
+    )
+
+  },
+  [types.CANCEL_RESERVATION](state){
+    reservationApi.cancelReservation(
+      state.params,
+      response=>{
+        console.log(response)
+        Vue.set(state,"cancelMessage",response.message);
+      },
+      error=>{
+
+      })
+  },
 };
 
 export default {

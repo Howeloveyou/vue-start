@@ -18,7 +18,7 @@ const actions = {
       data,
       response => {
         console.log(response.code);
-        if (response.code == 200 && response.data){
+        if (response.code === 200 && response.data){
           commit(types.LOGIN_SUCCESS,response.data);
         }else{
           commit(types.LOGIN_FAIL,response.message);

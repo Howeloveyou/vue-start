@@ -12,8 +12,15 @@ export const CHNANGE_DATE ='CHNANGE_DATE';
 export const CHNANGE_TIME = 'CHNANGE_TIME';
 export const CHOOSE_ROOM='CHOOSE_ROOM';
 export const GET_ROOMLIST = 'GET_ROOMLIST';
+export const GET_SEATLIST = 'GET_SEATLIST';
+export const GET_ROOM = 'GET_ROOM';
+export const TO_RESERVATION = 'TO_RESERVATION';
+export const CANCEL_RESERVATION = 'CANCEL_RESERVATION';
 
 //登录
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_FAIL = 'LOGIN_FAIL';
 
+//记录
+export const GET_RECORD = 'GET_RECORT';
+export const GET_SIGNINFO = 'GET_SIGNINFO';

@@ -59,6 +59,7 @@
           }
           this.$store.dispatch('login',params);
           console.log('submit!');
+          this.$store.state.Reservation.params.sid = this.$store.state.login.sid;
           this.login=!this.login;
           this.centerDialogVisible=false;
         }
