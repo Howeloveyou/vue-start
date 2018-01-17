@@ -85,7 +85,9 @@
         this.$alert(newValue,"提示",{
           confirmButtonText: '确定',
           callback: action => {
-            this.$router.push("/Page3");
+            this.$store.state.login.mark = 1;
+            this.$router.push("/Sign");
+            this.$store.state.Reservation.message = "";
           }
         })
       }

@@ -14,22 +14,24 @@ export default new Router({
       path: '/', component: Page1
     },
     {
-      path: '/Page1', component: Page1,
+      path: '/Home', component: Page1,
     },
     {
-      path: '/Page2', component: Page2,
+      path: '/Reservation', component: Page2,
       meta: {
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+        requireFalse:true, //判断是否没有预约
       },
     },
     {
-      path:'/Page3', component: Page3,
+      path:'/Sign', component: Page3,
       meta: {
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
+        requireTrue:true, //判断是否已经预约过
       },
     },
     {
-      path:'/Page4', component: Page4,
+      path:'/Record', component: Page4,
       meta: {
         requireAuth: true,  // 添加该字段，表示进入这个路由是需要登录的
       },

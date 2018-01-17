@@ -17,13 +17,29 @@ Vue.use(ElementUI);
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
     console.log(store.state.login.isLogin)
-    if(!store.state.login.isLogin){
+    if(!store.state.login.isLogin || store.state.login.mark === 2){
       console.log("do..");
       next({
-        path:'/page1'
+        path:'/Home'
       })
     }else{
-      next();
+      if (to.meta.requireFalse){
+        if(store.state.login.mark === 0){
+          next();
+        }else {
+          next({path:'/Sign'})
+        }
+      }else if(to.meta.requireTrue){
+        if(store.state.login.mark === 1){
+          next();
+        }else {
+          next({path:'Reservation'})
+        }
+      }
+      else{
+        next();
+      }
+
     }
   }else{
     next();

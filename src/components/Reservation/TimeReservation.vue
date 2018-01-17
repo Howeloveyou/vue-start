@@ -1,6 +1,6 @@
 <template>
   <div>
-    <p>请选择您的预约时间</p>
+    <p>请选择您的预约日期</p>
     <div>
       <el-date-picker
         v-model="date"
@@ -12,13 +12,14 @@
       >
       </el-date-picker>
     </div>
-      <div>
-        <el-checkbox-group v-model="time" @change = "changeTime">
-          <el-checkbox-button label="morning">早上</el-checkbox-button>
-          <el-checkbox-button label="afternoon">下午</el-checkbox-button>
-          <el-checkbox-button label="night">晚上</el-checkbox-button>
-        </el-checkbox-group>
-      </div>
+    <div>
+      <p>请选择您的预约时间</p>
+      <el-checkbox-group v-model="time" @change = "changeTime">
+        <el-checkbox-button label="morning">早上（8：00--12:00）</el-checkbox-button>
+        <el-checkbox-button label="afternoon">下午（12:00--17:00）</el-checkbox-button>
+        <el-checkbox-button label="night">晚上（17:00--22:00）</el-checkbox-button>
+      </el-checkbox-group>
+    </div>
   </div>
 </template>
 

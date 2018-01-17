@@ -37,6 +37,7 @@
         })
       },
       cancelReservation(){
+        this.$store.state.login.mark = 0;
         this.$store.dispatch("cancelReservation");
       }
 
@@ -46,7 +47,8 @@
         this.$alert(newValue,"提示",{
           confirmButtonText: '确定',
           callback: action => {
-            this.$router.push("/Page1");
+            this.$router.push("/Home");
+            this.$store.state.Reservation.cancelMessage = "";
           }
         })
       }

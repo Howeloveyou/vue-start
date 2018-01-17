@@ -6,6 +6,9 @@ const state = {
   sid:"",
   sname:"",
   isLogin:false,
+  isError:false,
+  mark:0,
+  centerDialogVisible:false
 };
 
 const getters = {
@@ -36,7 +39,13 @@ const mutations = {
     console.log(payload);
     Vue.set(state,"sid",payload.sid)
     Vue.set(state,"sname",payload.sname);
-    Vue.set(state,"isLogin",true)
+    Vue.set(state,"isLogin",true);
+    Vue.set(state,"mark",payload.mark)
+    Vue.set(state,"centerDialogVisible",false)
+  },
+
+  [types.LOGIN_FAIL](state,payload){
+    Vue.set(state,"isError",true);
   }
 };
 
