@@ -1,12 +1,12 @@
 <template>
   <div>
   <el-button size="medium" round @click="toDialog"  v-if="!isLogin">登录</el-button>
-    <el-dropdown v-if="isLogin">
+    <el-dropdown v-if="isLogin" @command="exit">
       <span class="el-dropdown-link">
        <span style="color:white">{{sname}}</span><i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item>安全退出</el-dropdown-item>
+        <el-dropdown-item >安全退出</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   <el-dialog
@@ -70,6 +70,12 @@
         },
         FDialog(){
           this.$store.state.login.centerDialogVisible = false;
+        },
+        exit(){
+          console.log("exit..")
+          this.$store.state.login.isLogin = false;
+          this.$router.push("/Home")
+
         }
       },
       computed:{

@@ -55,15 +55,19 @@
         switch(key){
           case '1':
             this.$router.push('/Home');
+            this.breadcrumbItems = ["首页"];
             break;
           case '2':
-            this.$router.push('/Reservation')
+            this.$router.push('/Reservation');
+            this.breadcrumbItems = ["预约"];
             break;
           case '3':
-            this.$router.push('/Sign')
+            this.$router.push('/Sign');
+            this.breadcrumbItems = ["签到"];
             break;
           case '4':
-            this.$router.push('/Record')
+            this.$router.push('/Record');
+            this.breadcrumbItems = ["记录"];
             break;
         }
       },
